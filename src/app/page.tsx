@@ -1,95 +1,150 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// "use client";
 
-export default function Home() {
+// import { useRouter } from "next/navigation";
+// import { Box, Button, Container, Typography } from "@mui/material";
+// import { motion } from "framer-motion"; // For smooth animations
+// import Hero from "@/components/Hero";
+
+// export default function HomePage() {
+//   const router = useRouter();
+  
+//   return (
+//     <>
+//     <Box
+//       sx={{
+//         minHeight: "100vh",
+//         display: "flex",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         textAlign: "center",
+//         backgroundImage: "url('/background.jpg')",
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         color: "#fff",
+//       }}
+//     >
+//       <Container>
+//         {/* Hero Section with Animation */}
+//         <motion.div
+//           initial={{ opacity: 0, y: -50 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 1 }}
+//         >
+//           <Typography variant="h2" gutterBottom sx={{ fontWeight: "bold" }}>
+//             Welcome to the Medical Dashboard
+//           </Typography>
+//           <Typography variant="h6" sx={{ mb: 4 }}>
+//             Manage appointments, medical records, and patients efficiently.
+//           </Typography>
+
+//           {/* Animated Button */}
+//           <motion.div whileHover={{ scale: 1.1 }}>
+//             <Button
+//               variant="contained"
+//               color="primary"
+//               size="large"
+//               onClick={() => router.push("/login")}
+//               sx={{ borderRadius: 3, fontSize: "1.2rem", px: 4, py: 1.5 }}
+//             >
+//               Get Started
+//             </Button>
+//           </motion.div>
+//         </motion.div>
+//       </Container>
+//     </Box>
+//     </>
+//   );
+// }
+
+
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Box, Button, Container, Typography } from "@mui/material";
+import { motion } from "framer-motion"; // For smooth animations
+
+export default function HomePage() {
+  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <Box
+      sx={{
+        position: "relative",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        color: "#fff",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background Video (Load only on Client Side) */}
+      {isClient && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            objectFit: "cover",
+            zIndex: -1, // Keep it behind everything
+          }}
+        >
+          <source src="https://videos.pexels.com/video-files/6755015/6755015-hd_1920_1080_25fps.mp4" type="video/mp4" />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        </video>
+      )}
+
+      {/* Content Overlay */}
+      <Container
+        sx={{
+          position: "relative",
+          zIndex: 1,
+          backdropFilter: "blur(5px)", // ব্যাকগ্রাউন্ড ব্লার
+          backgroundColor: "rgba(0, 0, 0, 0.5)", // হালকা কালো ব্যাকগ্রাউন্ড
+          padding: "2rem",
+          borderRadius: "10px",
+        }}
+      >
+        {/* Hero Section with Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <Typography variant="h2" gutterBottom sx={{ fontWeight: "bold" }}>
+            Welcome to the DOCTOR+
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 4 }}>
+            Manage appointments, medical records, and patients efficiently.
+          </Typography>
+
+          {/* Animated Button */}
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={() => router.push("/login")}
+              sx={{ borderRadius: 3, fontSize: "1.2rem", px: 4, py: 1.5 }}
+            >
+              Get Started
+            </Button>
+          </motion.div>
+        </motion.div>
+      </Container>
+    </Box>
   );
 }
