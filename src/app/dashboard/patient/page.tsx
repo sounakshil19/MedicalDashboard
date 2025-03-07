@@ -196,9 +196,9 @@ export default function PatientDashboard() {
     <Typography color="error">{error}</Typography>
   ) : (
     <>
-      {/* One Line Layout using Grid */}
+      
       <Grid container spacing={3} sx={{ mt: 3 }}>
-        {/* Patient Details Section */}
+        
         <Grid item xs={12} md={4}>
   <Card
     sx={{
@@ -206,8 +206,8 @@ export default function PatientDashboard() {
       boxShadow: 3,
       height: "100%",
       borderRadius: 3,
-      backgroundColor: "rgba(255, 255, 255, 0.5)", // Light transparency
-      backdropFilter: "blur(10px)", // Blurred effect for better readability
+      backgroundColor: "rgba(255, 255, 255, 0.5)", 
+      backdropFilter: "blur(10px)",
     }}
   >
     <Typography variant="h6" fontWeight="bold" color="secondary">
@@ -235,7 +235,6 @@ export default function PatientDashboard() {
   </Card>
 </Grid>
 
-{/* Doctor List Section */}
 <Grid item xs={12} md={4}>
   <Card
     sx={{
@@ -265,7 +264,6 @@ export default function PatientDashboard() {
   </Card>
 </Grid>
 
-{/* Appointments Section */}
 <Grid item xs={12} md={4}>
   <Card
     sx={{

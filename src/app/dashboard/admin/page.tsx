@@ -20,7 +20,7 @@ import Footer from "@/components/Footer";
 import KPIDashboard from "@/components/KPIDashboard";
 import MiniCalendar from "@/components/MiniCalendar";
 import MyAppointments from "@/components/MyAppointments";
-// import ExperienceSection from "@/components/ExperienceSection";
+
 
 const imageUrls = [
   "https://www.doctorplusindia.co.in/images/1001.jpg",
