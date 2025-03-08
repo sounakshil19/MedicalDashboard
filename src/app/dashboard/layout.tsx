@@ -8,14 +8,19 @@ import { useRouter } from "next/navigation";
 import supabase from "@/utils/supabaseClient";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const [userRole, setUserRole] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<"admin" | "patient" | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const getUserRole = async () => {
       const { data } = await supabase.auth.getUser();
       if (data?.user) {
-        setUserRole(data.user.user_metadata.role);
+        const role = data.user.user_metadata.role;
+        if (role === "admin" || role === "patient") {
+          setUserRole(role);
+        } else {
+          setUserRole(null);
+        }
       } else {
         router.replace("/login");
       }
